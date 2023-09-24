@@ -36,7 +36,7 @@ M.setup = function()
       snip(";e", t("\\eta")),
       snip(";t", t("\\theta")),
       snip(";T", t("\\Theta")),
-      snip(";o", t("\\iota")),
+      -- snip(";o", t("\\iota")),
       snip(";i", t("\\iota")),
       snip(";k", t("\\kappa")),
       snip(";l", t("\\lambda")),
@@ -109,17 +109,9 @@ M.setup = function()
       snip(";be", fmt(
         [[
         $$ \begin{{{1}}}
-          {2}
+           {2}
         \end{{{3}}} $$
         ]], { i(1, "align*"), i(2), rep(1) })
-      ),
-
-      snip(";as", fmt(
-        [[
-        $$ \begin{{align*}}
-          {1}
-        \end{{align*}} $$
-        ]], { i(1) })
       ),
 
       snip("it", fmta("\\intertext{<>}", { i(1) })),
@@ -274,6 +266,56 @@ M.setup = function()
 
         {1}
         ]], { i(1) }
+      )),
+
+    },
+
+    c = {
+
+      snip("mv", fmta(
+        [[
+        int main(void)
+        {
+            <1>
+        }
+        ]], { i(1) }
+      )),
+
+      snip("ma", fmta(
+        [[
+        int main(int argc, char *argv[]) {
+            <1>
+        }
+        ]], { i(1) }
+      )),
+
+      snip("fo", fmta(
+        [[
+        for (<1>; <2>; <3>) {
+            <4>
+        }
+        ]], { i(1, "int i = 0"), i(2, "i < n"), i(3, "i++"), i(4) }
+      )),
+
+      snip("dw", fmta(
+        [[
+        do {
+            <2>
+        } while (<1>)
+        ]], { i(1), i(2) }
+      )),
+
+      snip("wh", fmta(
+        [[
+        while (<1>) {
+            <2>
+        }
+        ]], { i(1), i(2) }
+      )),
+
+      snip("pt", fmt(
+        [[{1} *{2} = malloc({3} * sizeof({4}))]],
+        { i(1), i(2), i(3), rep(1) }
       )),
 
     },
