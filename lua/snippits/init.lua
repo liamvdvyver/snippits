@@ -1,7 +1,6 @@
 local M = {}
 
 M.setup = function()
-
   local ls = require("luasnip")
   local snip = ls.snippet
   local node = ls.snippet_node
@@ -22,6 +21,10 @@ M.setup = function()
   ls.add_snippets(nil, {
 
     tex = {
+
+      -- words
+      snip("eqm", t("equilibrium")),
+      snip("SBWC", t("Suppose by way of contradiction")),
 
       -- greek
       snip(";a", t("\\alpha")),
@@ -90,6 +93,7 @@ M.setup = function()
       ),
 
       -- environments
+      snip("tx", fmta("\\text{<>}", {i(1)})),
       snip({
           trig = "beg",
           name = "begin",
@@ -117,6 +121,7 @@ M.setup = function()
       snip("it", fmta("\\intertext{<>}", { i(1) })),
 
       postfix(".hat", { l("\\hat{" .. l.POSTFIX_MATCH .. "}") }),
+      postfix(".bar", { l("\\bar{" .. l.POSTFIX_MATCH .. "}") }),
 
       snip( -- FIX: can't get this to work with fmt()
         "seq",
@@ -133,6 +138,11 @@ M.setup = function()
       snip("v", t("\\vert")),
       snip("V", t("\\Vert")),
       snip("pd", fmt("\\frac{{\\partial {1}}}{{\\partial {2}}}", { i(1, "y"), i(2, "x") })),
+      snip("sm", fmta("\\sum_{<>}^{<>} <>", { i(1), i(2), i(3)})),
+
+      -- powers
+      snip("2", t("^2")),
+      snip("i", t("^{-1}")),
 
       -- logic and sets
       snip("set", fmt("\\{{{1}\\}}", { i(1, "x") })),
@@ -140,12 +150,18 @@ M.setup = function()
       snip("fa", t("\\forall")),
       snip("fin", fmt("\\forall {{{1}}} \\in {{{2}}}", { i(1), i(2) })),
       snip("dne", t("\\notexists")),
-      snip("nin", t("\\notin")),
+      snip("nin", t("\\not\\in")),
       snip("est", fmt("\\exists {1} :", { i(1, "x") })),
       snip("e", t("\\exists")),
+      snip("st", t("\\text{ s.t. }")),
+      snip("n", t("\\neg")),
 
-      snip("nd", t("\\wedge")),
-      snip("or", t("\\vee")),
+      snip("nd", t("\\land")),
+      snip("or", t("\\lor")),
+
+      -- Sequents
+      snip("en", t("\\vDash")),
+      snip("dr", t("\\vdash")),
 
       snip("un", t("\\cup")),
       snip("is", t("\\cap")),
@@ -161,6 +177,8 @@ M.setup = function()
       snip("bb", fmt("\\mathbb{{{1}}}", { i(1) })),
       snip("R", t("\\mathbb{R}")),
       snip("Rn", fmt("\\mathbb{{R}}^{{{1}}}", { i(1, "n") })),
+      snip("Rp", fmt("\\mathbb{{R}}_{{{1}}}", { i(1, "+") })),
+      snip("Rnp", fmt("\\mathbb{{R}}^{{{1}}}_{{{2}}}", { i(1, "n"), i(2, "+") })),
       snip("N", t("\\mathbb{N}")),
       snip("Nn", fmt("\\mathbb{{N}}^{{{1}}}", { i(1, "n") })),
       snip("Z", t("\\mathbb{Z}")),
@@ -173,6 +191,20 @@ M.setup = function()
       -- vectors
       snip("0", t("\\mathbf{0}")),
       snip("bf", fmt("\\mathbf{{{1}}}", { i(1) })),
+      snip("cv", fmt("{1} {2} + (1-{1}) {3}", { i(1, "\\alpha"), i(2, "x"), i(3, "y") })),
+
+      --- other letters
+      snip("bb", fmt("\\mathbb{{{1}}}", { i(1) })),
+      snip("mc", fmt("\\mathcal{{{1}}}", { i(1) })),
+      snip("L", t("\\mathcal{L}")),
+      snip("F", t("\\mathcal{F}")),
+      snip("P", t("\\mathbb{P}")),
+      snip("W", t("\\mathcal{W}")),
+      snip("B", t("\\mathcal{B}")),
+      snip( -- FIX: can't get this to work with fmt()
+        "Px",
+        { t("\\mathbb{P}_"), i(1, "i"), t(" (x_"), rep(1), t(")")}
+      ),
 
       -- preferences
       snip("pf", t("\\succsim")),
@@ -268,6 +300,13 @@ M.setup = function()
         ]], { i(1) }
       )),
 
+      -- Maths notes
+      snip("pf", t("**Proof**: ")),
+      snip("pr", t("**Proposition**: ")),
+      snip("tm", t("**Theorem**: ")),
+      snip("cl", t("**Corrolary**: ")),
+      snip("df", t("**Definition**: ")),
+
     },
 
     c = {
@@ -321,7 +360,6 @@ M.setup = function()
     },
 
   })
-
 end
 
 return M
