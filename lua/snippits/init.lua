@@ -66,7 +66,7 @@ M.setup = function()
       snip(";o", t("\\omega")),
       snip(";O", t("\\Omega")),
 
-      -- math mopes
+      -- math modes
       snip({
         trig = "mi",
         namr = "inline_math",
@@ -75,50 +75,63 @@ M.setup = function()
         t("$ "),
         i(1),
         t(" $"),
-        i(0)
+        i(0),
       }),
 
       snip(";", fmt("${}${}", { i(1), i(2) })),
 
-      snip({
+      snip(
+        {
           trig = "md",
           name = "display_math",
           dscr = "Display ($$) math environment",
         },
-        fmt([[
+        fmt(
+          [[
         $$
             {1}
         $$
-        ]], { i(1) })
+        ]],
+          { i(1) }
+        )
       ),
 
       -- environments
-      snip("tx", fmta("\\text{<>}", {i(1)})),
-      snip({
+      snip("tx", fmta("\\text{<>}", { i(1) })),
+      snip(
+        {
           trig = "beg",
           name = "begin",
           dscr = "Begin environment",
         },
-        fmt([[
+        fmt(
+          [[
         \begin{{{1}}}
             {2}
         \end{{{3}}}
-        ]], { i(1, "align*"), i(2), rep(1) })
+        ]],
+          { i(1, "align*"), i(2), rep(1) }
+        )
       ),
 
       snip("al", t("align")),
       snip("as", t("align*")),
 
-
-      snip(";be", fmt(
-        [[
+      snip(
+        ";be",
+        fmt(
+          [[
         $$ \begin{{{1}}}
            {2}
         \end{{{3}}} $$
-        ]], { i(1, "align*"), i(2), rep(1) })
+        ]],
+          { i(1, "align*"), i(2), rep(1) }
+        )
       ),
 
       snip("it", fmta("\\intertext{<>}", { i(1) })),
+      snip("q", t("\\quad")),
+      snip("pb", t("\\pagebreak")),
 
       postfix(".hat", { l("\\hat{" .. l.POSTFIX_MATCH .. "}") }),
       postfix(".bar", { l("\\bar{" .. l.POSTFIX_MATCH .. "}") }),
@@ -133,12 +146,16 @@ M.setup = function()
       snip("^", fmt("^{{{1}}}", { i(1) })),
       snip("f", fmt("\\frac{{{1}}}{{{2}}}", { i(1), i(2) })),
       snip("o", t("\\circ")),
-      snip("ab", fmt("\\vert {} \\vert", { i(1) })),
+      snip("ab", fmt("\\left\\vert {} \\right\\vert", { i(1) })),
       snip("nm", fmt("\\Vert {} \\Vert", { i(1) })),
       snip("v", t("\\vert")),
       snip("V", t("\\Vert")),
       snip("pd", fmt("\\frac{{\\partial {1}}}{{\\partial {2}}}", { i(1, "y"), i(2, "x") })),
-      snip("sm", fmta("\\sum_{<>}^{<>} <>", { i(1), i(2), i(3)})),
+      snip("sm", fmta("\\sum_{<>}^{<>} <>", { i(1), i(2), i(3) })),
+
+      -- Do I like these?
+      -- postfix("_", { l("{" .. l.POSTFIX_MATCH .. "}^{}") }),
+      -- postfix("^", { l("{" .. l.POSTFIX_MATCH .. "}^{}") }),
 
       -- powers
       snip("2", t("^2")),
@@ -155,6 +172,8 @@ M.setup = function()
       snip("e", t("\\exists")),
       snip("st", t("\\text{ s.t. }")),
       snip("n", t("\\neg")),
+      snip("T", t("\\top")),
+      snip("F", t("\\bot")),
 
       snip("nd", t("\\land")),
       snip("or", t("\\lor")),
@@ -162,6 +181,8 @@ M.setup = function()
       -- Sequents
       snip("en", t("\\vDash")),
       snip("dr", t("\\vdash")),
+      snip("dn", t("\\vdash_{ND}")),
+      snip("ds", t("\\vdash_{ND}")),
 
       snip("un", t("\\cup")),
       snip("is", t("\\cap")),
@@ -170,7 +191,8 @@ M.setup = function()
       snip("if", t("\\iff")),
       snip("aim", t("&\\implies")),
       snip("aif", t("&\\iff")),
-      snip("a=", t("&=")),
+      snip("ae", t("&=")),
+      snip("at", fmta("&\\text{<>}", { i(1) })),
 
       -- common sets
       snip("mt", t("\\emptyset")),
@@ -192,6 +214,9 @@ M.setup = function()
       snip("0", t("\\mathbf{0}")),
       snip("bf", fmt("\\mathbf{{{1}}}", { i(1) })),
       snip("cv", fmt("{1} {2} + (1-{1}) {3}", { i(1, "\\alpha"), i(2, "x"), i(3, "y") })),
+      snip("x", t("\\mathbf{x}")),
+      snip("y", t("\\mathbf{y}")),
+      snip("b", t("\\mathbf{b}")),
 
       --- other letters
       snip("bb", fmt("\\mathbb{{{1}}}", { i(1) })),
@@ -203,7 +228,7 @@ M.setup = function()
       snip("B", t("\\mathcal{B}")),
       snip( -- FIX: can't get this to work with fmt()
         "Px",
-        { t("\\mathbb{P}_"), i(1, "i"), t(" (x_"), rep(1), t(")")}
+        { t("\\mathbb{P}_"), i(1, "i"), t(" (x_"), rep(1), t(")") }
       ),
 
       -- preferences
@@ -212,8 +237,15 @@ M.setup = function()
       snip("PF", t("\\succ")),
       snip("NPF", t("\\prec")),
 
+      -- extrema
+      snip("sp", fmt("\\sup({1})", { i(1, "A") })),
+      snip("in", fmt("\\inf({1})", { i(1, "A") })),
+
       -- LaTeX template
-      snip("tmp", fmta([[
+      snip(
+        "tmp",
+        fmta(
+          [[
 
       \documentclass[a4paper]{article}
 
@@ -248,9 +280,10 @@ M.setup = function()
       %\printbibliography
 
       \end{document}
-      ]], { i(1), i(2, "Liam van der Vyver"), i(3), i(4) }
-
-      )),
+      ]],
+          { i(1), i(2, "Liam van der Vyver"), i(3), i(4) }
+        )
+      ),
 
       -- these assume brackets get autocompleted
       snip("l(", fmta("\\left( <> \\right", { i(1, "") })),
@@ -258,18 +291,22 @@ M.setup = function()
       snip("l{", fmta("\\left\\{ <> \\right\\", { i(1, "") })),
 
       -- optimisation
-      snip("lg", fmta(
-        "\\mathcal{L}(<>) = <> - \\lambda \\left( <> \\right)",
-        { i(1, "\\mathbf{x}, \\lambda"), i(2, "f(\\mathbf{x})"), i(3, "g(\\mathbf{x}) - b") }
-      )),
-
+      snip(
+        "lg",
+        fmta(
+          "\\mathcal{L}(<>) = <> - \\lambda \\left( <> \\right)",
+          { i(1, "\\mathbf{x}, \\lambda"), i(2, "f(\\mathbf{x})"), i(3, "g(\\mathbf{x}) - b") }
+        )
+      ),
     },
 
     markdown = {
 
       -- yaml headers
-      snip("lit", fmt(
-        [[
+      snip(
+        "lit",
+        fmt(
+          [[
         ---
         tags: literature
         source: {1}
@@ -277,28 +314,37 @@ M.setup = function()
 
         {2}
         ]],
-        { i(1), i(2) }
-      )),
+          { i(1), i(2) }
+        )
+      ),
 
-      snip("per", fmt(
-        [[
+      snip(
+        "per",
+        fmt(
+          [[
         ---
         tags: permanent
         ---
 
         {1}
-        ]], { i(1) }
-      )),
+        ]],
+          { i(1) }
+        )
+      ),
 
-      snip("fle", fmt(
-        [[
+      snip(
+        "fle",
+        fmt(
+          [[
         ---
         tags: fleeting
         ---
 
         {1}
-        ]], { i(1) }
-      )),
+        ]],
+          { i(1) }
+        )
+      ),
 
       -- Maths notes
       snip("pf", t("**Proof**: ")),
@@ -306,59 +352,78 @@ M.setup = function()
       snip("tm", t("**Theorem**: ")),
       snip("cl", t("**Corrolary**: ")),
       snip("df", t("**Definition**: ")),
-
     },
 
     c = {
 
-      snip("mv", fmta(
-        [[
+      snip(
+        "mv",
+        fmta(
+          [[
         int main(void)
         {
             <1>
         }
-        ]], { i(1) }
-      )),
+        ]],
+          { i(1) }
+        )
+      ),
 
-      snip("ma", fmta(
-        [[
+      snip(
+        "ma",
+        fmta(
+          [[
         int main(int argc, char *argv[]) {
             <1>
         }
-        ]], { i(1) }
-      )),
+        ]],
+          { i(1) }
+        )
+      ),
 
-      snip("fo", fmta(
-        [[
+      snip(
+        "fo",
+        fmta(
+          [[
         for (<1>; <2>; <3>) {
             <4>
         }
-        ]], { i(1, "int i = 0"), i(2, "i < n"), i(3, "i++"), i(4) }
-      )),
+        ]],
+          { i(1, "int i = 0"), i(2, "i < n"), i(3, "i++"), i(4) }
+        )
+      ),
 
-      snip("dw", fmta(
-        [[
+      snip(
+        "dw",
+        fmta(
+          [[
         do {
             <2>
         } while (<1>)
-        ]], { i(1), i(2) }
-      )),
+        ]],
+          { i(1), i(2) }
+        )
+      ),
 
-      snip("wh", fmta(
-        [[
+      snip(
+        "wh",
+        fmta(
+          [[
         while (<1>) {
             <2>
         }
-        ]], { i(1), i(2) }
-      )),
+        ]],
+          { i(1), i(2) }
+        )
+      ),
 
-      snip("pt", fmt(
-        [[{1} *{2} = malloc({3} * sizeof({4}))]],
-        { i(1), i(2), i(3), rep(1) }
-      )),
-
+      snip("pt", fmt([[{1} *{2} = malloc({3} * sizeof({4}))]], { i(1), i(2), i(3), rep(1) })),
     },
 
+    javascript = {
+      snip("fn", fmta([[<1> = (<2>) =>> {<3>};]], { i(1), i(2), i(3) })),
+      snip("ar", fmta([[(<1>) =>> {<2>};]], { i(1), i(2) })),
+    },
   })
 end
 
