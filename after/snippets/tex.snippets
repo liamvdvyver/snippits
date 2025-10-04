@@ -1,0 +1,348 @@
+# Greek
+
+snippet ;a
+	\\alpha
+
+snippet ;b
+	\\beta
+
+snippet ;g
+	\\gamma
+
+snippet ;
+	G	\\Gamma
+
+snippet ;d
+	\\delta
+
+snippet ;D
+	\\Delta
+
+snippet ;e
+	\\epsilon
+
+snippet ;vp
+	\\varepsilon
+
+snippet ;z
+	\\zeta
+
+snippet ;e
+	\\eta
+
+snippet ;t
+	\\theta
+
+snippet ;T
+	\\Theta
+
+snippet ;i
+	\\iota
+
+snippet ;k
+	\\kappa
+
+snippet ;l
+	\\lambda
+
+snippet ;L
+	\\Lambda
+
+snippet ;m
+	\\mu
+
+snippet ;n
+	\\nu
+
+snippet ;x
+	\\xi
+
+snippet ;X
+	\\Xi
+
+snippet ;p
+	\\pi
+
+snippet ;P
+	\\Pi
+
+snippet ;r
+	\\rho
+
+snippet ;s
+	\\sigma
+
+snippet ;S
+	\\Sigma
+
+snippet ;vs
+	\\varsigma
+
+snippet ;t
+	\\tau
+
+snippet ;u
+	\\upsilon
+
+snippet ;U
+	\\Upsilon
+
+snippet ;ph
+	\\phi
+
+snippet ;Ph
+	\\Phi
+
+snippet ;vph
+	\\varphi
+
+snippet ;c
+	\\chi
+
+snippet ;ps
+	\\psi
+
+snippet ;Ps
+	\\Psi
+
+snippet ;o
+	\\omega
+
+snippet ;O
+	\\Omega
+
+# Math modes
+
+snippet mi math inline
+	$$1$
+
+snippet md math display
+	$$
+		$1
+	$$
+
+# Environments
+
+snippet tx text
+	\\text{$1}
+
+snippet be begin environment
+	\\begin{${1:align*}}
+		$2
+	\\end{$1}
+
+snippet it intertext
+	\\intertext{$1}
+
+snippet q quad
+	\\quad
+
+snippet pb page break
+	\\pagebreak
+
+snippet seq sequence
+	{${1:x}_{$2:1}, \\ldots, {$1}_{$3:n}}
+
+# FIXME:
+snippet \_ subscript
+	_{$1}
+
+snippet ^ superscript
+	^{$1}
+
+snippet f fraction
+	\\frac{$1}{$2}
+
+snippet o composition circle
+	\\circ
+
+snippet ab absolute value
+	\\left\\vert$1\\right\\vert
+
+snippet nm norm
+	\\left\\Vert$1\\right\\Vert
+
+snippet pd partial derivative
+	\\frac{\\partial ${1:y}}{\\partial ${2:x}}
+
+snippet sm sum
+	\\sum_{${1:i=1}}^{${2:n}} $3
+
+snippet 2 squared
+	^2
+
+snippet i inverse
+	^{-1}
+
+snippet t transpose
+	^{\text{T}}
+
+snippet sb set builder notation
+	\\left{${1:x} \\vert $2right}\\}
+
+snippet \\ set difference
+	\\setminus
+
+snippet fa for all
+	\\forall
+
+snippet fin forall in
+	\\forall ${1:x} \in ${2:S}
+
+snippet est exists such that
+	\\exists ${1:y} \\text{ s.t }
+
+snippet nin not in
+	\\not\\in
+
+snippet e exists
+	\\exists
+
+snippet ne does not exist
+	\\notexists
+
+snippet st such that
+	\\text{s.t. }
+
+snippet n negation
+	\\neg
+
+snippet T truth
+	\\top
+
+snippet F falsity
+	\\bot
+
+snippet nd and
+	\\land
+
+snippet or or
+	\\lor
+
+snippet im implies
+	\\implies
+
+snippet aim aligned implies
+	&\\implies
+
+snippet if equivalence
+	\\iff
+
+snippet aif aligned equivalence
+	&\\iff
+
+snippet ae aligned equality
+	&=
+
+snippet at aligned text
+	&\\text{$1}
+
+snippet mt emptyset
+	\\emptyset
+
+snippet bb blackboard
+	\\mathbb{$1}
+
+snippet mc caligraphic
+	\\mathcal{$1}
+
+snippet R real numbers
+	\\mathbb{R}
+
+snippet Rn euclidean space
+	\\mathbb{R^{${1:n}}}
+
+snippet Rp positive euclidean space
+	\\mathbb{R_{${1:+}}}
+
+snippet Rp positive real numbers
+	\\mathbb{R_{${1:+}}}
+
+snippet Rp positive euclidean space
+	\\mathbb{R^{${1:n}}_{${2:+}}}
+
+snippet N natural numbers
+	\\mathbb{N}
+
+snippet Z integers
+	\\mathbb{Z}
+
+snippet Q rational numbers
+	\\mathbb{Q}
+
+snippet C complex numbers
+	\\mathbb{C}
+
+snippet 0 zero vector
+	\\mathbf{0}
+
+snippet bf boldface
+	\\mathbf{$1}
+
+snippet cv convex combination
+	${1:\\alpha} ${2:x} + (1- $1) ${3:y}
+
+snippet x vector x
+	\\mathbf{x}
+
+snippet y vector y
+	\\mathbf{y}
+
+snippet v vector
+	\\mathbf{${1:v}}
+
+snippet mn matrix dimensions subscript
+	_{${1:m}\times ${2:n}}
+
+snippet ij matrix subscript
+	_{${1:i}, ${2:j}}
+
+snippet in identity matrix (n x n)
+	\\mathbf{I}_{${1:n}\times $1}
+
+snippet id identity matrix
+	\\mathbf{I}
+
+snippet tmp template
+	\documentclass[a4paper]{article}
+
+	\usepackage{fullpage}
+	%\usepackage{geometry}
+	%\usepackage{titling}
+
+	\usepackage{amsmath}
+	\usepackage{amssymb}
+
+	\usepackage[style=authoryear,natbib=true,isbn=false,url=false,eprint=false]{biblatex} %style=apa
+	\usepackage{hyperref}
+
+	%\usepackage{graphicx}
+	%\usepackage[font={small,sf}]{caption}
+	%\usepackage{float}
+	%\usepackage{booktabs}
+	%\usepackage{pgfplots}
+
+	\title{$1}
+	\author{$2}
+	\date{$3}
+
+	\addbibresource{~/Documents/zotero/bib.bib}
+
+	\begin{document}
+
+	\maketitle
+
+	$4
+
+	%\printbibliography
+
+	\end{document}
+
+snippet ( big parentheses
+	\\left($1\\right
+
+snippet [ big brackets
+	\\left[$1\\right
+
+snippet { big curly braces
+	\\left{$1\\right

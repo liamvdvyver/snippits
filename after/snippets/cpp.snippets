@@ -1,0 +1,143 @@
+extends c
+
+# Streams/debug
+
+snippet fi range-based for loop
+	for (${1:auto &x} : ${2}) {
+		${3}
+	}
+
+snippet ps print statement
+	std::cout << ${1:x} <<${2} '\n';
+
+snippet rs read statement
+	std::cin >> ${1:x} <<${2} '\n';
+
+snippet ds debug statement
+	std::cout << "${1:x}: " << ${2:${1}} << '\n';
+
+snippet pt print
+	<< ${1:x}
+
+snippet nl print newline
+	<< '\n'
+
+snippet db debug variable
+	<< "${1:x}: " << ${2:${1}}
+
+snippet co cout
+	std::cout ${1}
+
+snippet ci cin
+	std::cin ${1};
+
+snippet rd Read
+	>> ${1}
+
+snippet pv print vector
+	bool first = true;
+	for (auto ${1:n} : ${2:nums}) {
+		if (!first)
+			cout << ' ';
+		cout << ${3:n};
+		first = false;
+	}
+	cout << '\n';
+
+# Containers
+
+snippet lm lambda
+	[${1}]($2){${3}}
+
+snippet so std::sort
+	std::sort(${1:x}.begin(), ${1}.end()${2});
+
+snippet sr std::sort reverse
+	std::sort(${1:x}.rbegin(), ${1}.rend()${2});
+
+snippet io std::views::iota
+	std::view::iota(${1})
+
+# CP
+
+snippet cp competitiive programming template
+	#include <bits/stdc++.h>
+	using namespace std;
+
+	void solve() {
+		${1}
+	}
+
+	int main() {
+
+		int N;
+
+		cin >> N;
+
+		while (N--) {
+		  solve();
+		}
+
+	}
+
+snippet bs binary search
+	while (l < r) {
+		int m = (l + r + 1) / 2;
+
+		if (m == ${1}) {
+			${2:return m;}
+		}
+
+		else if (m < ${1}) {
+			${3:l = m + 1;}
+		}
+
+		else {
+			${4:r = m - 1;}
+		}
+	}
+
+snippet bsa binary search on the answer
+	auto ${1:it} = std::ranges::lower_bound(std::views::iota(${2:0}, ${3:n}), true, std::ranges::less{}, [&](int n){ return feasible(n); });
+
+snippet pr
+
+snippet mt matrix (2d vector)
+	auto ${1:x} = std::vector<std::vector<${2:int}>>(${3:n}, std::vector<${2}>(${4:n{3}}, ${5:0}));
+
+snippet mm matrix multiplication
+	template<typename T = int, int MOD = 0>
+	std::vector<std::vector<T>> matmul(const std::vector<std::vector<T>> &a, const std::vector<std::vector<T>> &b) {
+		auto ret = std::vector<std::vector<T>>(a.size(), std::vector<T>(a[0].size(), 0));
+		for (int i = 0; i < a.size(); i++) {
+			for (int j = 0; j < b[0].size(); j++) {
+				for (int k = 0; k < a[0].size(); k++) {
+					ret[i][j] += a[i][k] * b[k][j];
+					if constexpr (MOD) ret[i][j] %= MOD;
+				}
+			}
+		}
+		return ret;
+	}
+
+snippet nf nested for loop
+	for (int ${1:i} = 0; ${1} + 1 < ${2:n}; ${1}++) {
+		for (int ${3:j} = ${1} + 1; ${3} < ${2}; ${3}++) {
+			${4}
+		}
+	}
+
+snippet pw power
+	T power(T a, uint power) {
+		T ret = 1;
+		while (power) {
+			if (power & 1) {
+				ret *= a;
+				if constexpr (MOD) ret %= MOD;
+			}
+			a *= a;
+			if constexpr (MOD) a %= MOD;
+			power /= 2;
+		}
+		return ret;
+	}
