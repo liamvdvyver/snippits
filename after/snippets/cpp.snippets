@@ -100,7 +100,8 @@ snippet bs binary search
 snippet bsa binary search on the answer
 	auto ${1:it} = std::ranges::lower_bound(std::views::iota(${2:0}, ${3:n}), true, std::ranges::less{}, [&](int n){ return feasible(n); });
 
-snippet pr
+snippet po pragma once
+	#pragma once
 
 snippet mt matrix (2d vector)
 	auto ${1:x} = std::vector<std::vector<${2:int}>>(${3:n}, std::vector<${2}>(${4:n{3}}, ${5:0}));

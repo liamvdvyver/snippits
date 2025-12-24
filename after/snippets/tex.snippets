@@ -141,7 +141,7 @@ snippet pb page break
 	\\pagebreak
 
 snippet seq sequence
-	{${1:x}_{$2:1}, \\ldots, {$1}_{$3:n}}
+	{${1:x}_${2:1}, \\ldots, $1_${3:n}}
 
 # FIXME:
 snippet \_ subscript
@@ -178,7 +178,7 @@ snippet t transpose
 	^{\text{T}}
 
 snippet sb set builder notation
-	\\left{${1:x} \\vert $2right}\\}
+	\\left{${1:x} \\vert $2\\right}\\}
 
 snippet \\ set difference
 	\\setminus
